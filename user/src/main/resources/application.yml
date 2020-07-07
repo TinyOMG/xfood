@@ -1,0 +1,39 @@
+server:
+  port: 8083
+
+#服务注册中心配置
+eureka:
+  client:
+    serviceUrl:
+      #这个地址填的是注册中心eureka-server的地址
+      defaultZone: http://localhost:8081/eureka/
+    healthcheck:
+      enabled: true
+
+spring :
+  application:
+    name: user
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/xfood1?useUnicode=true&characterEncoding=UTF-8&useSSL=true
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      connection-timeout: 6000
+      maximum-pool-size: 5
+
+  redis:
+    database: 0
+    host: 127.0.0.1
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 20
+        min-idle: 5
+    port: 6379
+    timeout: 1000
+  session:
+    store-type: none
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="cn.china.common.entity.Product" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_price" property="productPrice" jdbcType="DOUBLE" />
+    <result column="product_amount" property="productAmount" jdbcType="INTEGER" />
+    <result column="product_introduce" property="productIntroduce" jdbcType="VARCHAR" />
+    <result column="product_flavor" property="productFlavor" jdbcType="VARCHAR" />
+    <result column="product_discount" property="productDiscount" jdbcType="DOUBLE" />
+    <result column="product_type" property="productType" jdbcType="VARCHAR" />
+    <result column="product_url" property="productUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, product_name, product_price, product_amount, product_introduce, product_flavor, 
+    product_discount, product_type, product_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByProductType" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from product
+    where  product_type= #{type}
+  </select>
+
+  <select id="getPage" resultType="java.lang.Integer">
+    select
+    ceil(count(1)/2)
+    from product
+    where  product_type= #{productType}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.china.common.entity.Product" >
+    insert into product (id, product_name, product_price, 
+      product_amount, product_introduce, product_flavor, 
+      product_discount, product_type, product_url
+      )
+    values (#{id,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productPrice,jdbcType=DOUBLE}, 
+      #{productAmount,jdbcType=INTEGER}, #{productIntroduce,jdbcType=VARCHAR}, #{productFlavor,jdbcType=VARCHAR}, 
+      #{productDiscount,jdbcType=DOUBLE}, #{productType,jdbcType=VARCHAR}, #{productUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.china.common.entity.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productPrice != null" >
+        product_price,
+      </if>
+      <if test="productAmount != null" >
+        product_amount,
+      </if>
+      <if test="productIntroduce != null" >
+        product_introduce,
+      </if>
+      <if test="productFlavor != null" >
+        product_flavor,
+      </if>
+      <if test="productDiscount != null" >
+        product_discount,
+      </if>
+      <if test="productType != null" >
+        product_type,
+      </if>
+      <if test="productUrl != null" >
+        product_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productAmount != null" >
+        #{productAmount,jdbcType=INTEGER},
+      </if>
+      <if test="productIntroduce != null" >
+        #{productIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="productFlavor != null" >
+        #{productFlavor,jdbcType=VARCHAR},
+      </if>
+      <if test="productDiscount != null" >
+        #{productDiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productUrl != null" >
+        #{productUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.china.common.entity.Product" >
+    update product
+    <set >
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        product_price = #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productAmount != null" >
+        product_amount = #{productAmount,jdbcType=INTEGER},
+      </if>
+      <if test="productIntroduce != null" >
+        product_introduce = #{productIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="productFlavor != null" >
+        product_flavor = #{productFlavor,jdbcType=VARCHAR},
+      </if>
+      <if test="productDiscount != null" >
+        product_discount = #{productDiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="productType != null" >
+        product_type = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productUrl != null" >
+        product_url = #{productUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.china.common.entity.Product" >
+    update product
+    set product_name = #{productName,jdbcType=VARCHAR},
+      product_price = #{productPrice,jdbcType=DOUBLE},
+      product_amount = #{productAmount,jdbcType=INTEGER},
+      product_introduce = #{productIntroduce,jdbcType=VARCHAR},
+      product_flavor = #{productFlavor,jdbcType=VARCHAR},
+      product_discount = #{productDiscount,jdbcType=DOUBLE},
+      product_type = #{productType,jdbcType=VARCHAR},
+      product_url = #{productUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

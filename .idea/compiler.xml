@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="user" />
+        <module name="common" />
+        <module name="cook" />
+        <module name="waiter" />
+        <module name="controller" />
+        <module name="eurekaregister" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="1.8" />
+      <module name="controller" target="1.8" />
+      <module name="cook" target="1.8" />
+      <module name="eurekaregister" target="1.8" />
+      <module name="mapper" target="1.8" />
+      <module name="user" target="1.8" />
+      <module name="waiter" target="1.8" />
+      <module name="xfood" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common" options="" />
+      <module name="controller" options="" />
+      <module name="cook" options="" />
+      <module name="eurekaregister" options="" />
+      <module name="mapper" options="" />
+      <module name="user" options="" />
+      <module name="waiter" options="" />
+      <module name="xfood" options="" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,13 @@
+server:
+  port: 8081  #tomcat 启动端口号
+
+#服务注册中心配置
+eureka:
+
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka/
+    healthcheck:
+      enabled: true
